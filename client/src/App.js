@@ -11,7 +11,10 @@ const INTERVAL_TIME = 2000
 const fetchReducer = (state, action) => {
   switch (action.type) {
     case STACK_PARAGRAPHS:
-      return { ...state, images: state.images.concat(action.images) }
+      return {
+        ...state,
+        paragraphs: state.paragraphs.concat(action.paragraphs),
+      }
     case FETCHING_PARAGRAPHS:
       return { ...state, fetching: action.fetching }
     default:
@@ -26,7 +29,7 @@ function App() {
     fetching: true,
   })
 
-  const [data, setData] = useState([])
+  // const [data, setData] = useState([])
   const [value, setValue] = useState(0)
   const [searchInput, setSearchInput] = useState("")
 
@@ -41,21 +44,21 @@ function App() {
 
   useFetch(DATA_SIZE_FULL, paragraphDispatch)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      let response = await fetch("/api/dataIdList?datasize=" + DATA_SIZE_FULL)
-      let list = await response.json()
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     let response = await fetch("/api/dataIdList?datasize=" + DATA_SIZE_FULL)
+  //     let list = await response.json()
 
-      let dataItems = await Promise.all(
-        list.map(async (id) => {
-          return (await fetch("/api/dataItem/" + id)).json()
-        })
-      )
-      setData(dataItems)
-    }
+  //     let dataItems = await Promise.all(
+  //       list.map(async (id) => {
+  //         return (await fetch("/api/dataItem/" + id)).json()
+  //       })
+  //     )
+  //     setData(dataItems)
+  //   }
 
-    fetchData()
-  }, [])
+  //   fetchData()
+  // }, [])
 
   const handleChange = (e) => {
     setSearchInput(e.target.value)
@@ -72,26 +75,32 @@ function App() {
           onChange={handleChange}
         />
       </div>
-      {data.map((row, i) => {
-        return (
-          <p key={`p${i}`}>
-            {row.map((textitem, j) => {
-              if (
-                searchInput.length > 0 &&
-                textitem.text.search(searchInput) === -1
-              ) {
-                return null
-              }
+      {paragraphData.paragraphs.length
+        ? paragraphData.paragraphs.map((row, i) => {
+            return (
+              <p key={`p${i}`}>
+                {row.map((textitem, j) => {
+                  if (
+                    searchInput.length > 0 &&
+                    textitem.text.search(searchInput) === -1
+                  ) {
+                    return null
+                  }
 
-              return (
-                <>
-                  <TextItem key={`${i}${j}`} value={value} data={textitem} />
-                </>
-              )
-            })}
-          </p>
-        )
-      })}
+                  return (
+                    <>
+                      <TextItem
+                        key={`${i}${j}`}
+                        value={value}
+                        data={textitem}
+                      />
+                    </>
+                  )
+                })}
+              </p>
+            )
+          })
+        : null}
     </div>
   )
 }

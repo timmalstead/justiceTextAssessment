@@ -25,7 +25,7 @@ const useFetch = (DATA_SIZE, dispatch) => {
     }
 
     fetchData()
-  }, [])
+  }, [DATA_SIZE, dispatch])
 }
 
 export default useFetch
