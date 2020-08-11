@@ -3,7 +3,6 @@ import { useEffect, useCallback, useRef } from "react"
 const useVisibleParagraphs = (
   nodeListIdent,
   paragraphData,
-  visibleParagraphs,
   setVisibleParagraphs
 ) => {
   const paragraphsRef = useRef(null)
@@ -13,16 +12,14 @@ const useVisibleParagraphs = (
       const intObs = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           const paragraphId = entry.target.id
-          if (entry.intersectionRatio > 0)
-            setVisibleParagraphs((prevState) => ({
-              ...prevState,
-              [paragraphId]: true,
-            }))
+          if (entry.intersectionRatio >= 0.1)
+            setVisibleParagraphs((prevState) => [
+              ...new Set([...prevState, paragraphId]),
+            ])
           else
-            setVisibleParagraphs((prevState) => ({
-              ...prevState,
-              [paragraphId]: false,
-            }))
+            setVisibleParagraphs((prevState) =>
+              prevState.filter((id) => id !== paragraphId)
+            )
         })
       })
       intObs.observe(node)

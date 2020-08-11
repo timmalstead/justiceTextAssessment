@@ -5,10 +5,14 @@ import { v4 } from "uuid"
 const Paragraph = ({ i, row, value, searchInput, visibleParagraphs }) => {
   const idRef = useRef(v4()).current
 
-  const visible = visibleParagraphs[idRef] ? true : false
+  const visible = visibleParagraphs.includes(idRef) ? true : false
+
+  const paragraphStyle = {
+    visibility: searchInput.length > 0 && !visible ? "hidden" : "visible",
+  }
 
   return (
-    <p className="full-paragraph" id={idRef}>
+    <p className={"full-paragraph"} id={idRef} style={paragraphStyle}>
       {row.length
         ? row.map((textitem, j) => {
             if (

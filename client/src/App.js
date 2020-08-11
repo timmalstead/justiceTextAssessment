@@ -34,7 +34,7 @@ function App() {
   const [value, setValue] = useState(0)
   const [searchInput, setSearchInput] = useState("")
   const [paragraphCounter, setParagraphCounter] = useState(1)
-  const [visibleParagraphs, setVisibleParagraphs] = useState({})
+  const [visibleParagraphs, setVisibleParagraphs] = useState([])
   const bottomBoundaryRef = useRef(null)
 
   /** DO NOT CHANGE THE FUNCTION BELOW */
@@ -48,12 +48,7 @@ function App() {
 
   useFetch(DATA_SIZE_FULL, paragraphDispatch, paragraphCounter)
   useLazyLoad(bottomBoundaryRef, setParagraphCounter)
-  useVisibleParagraphs(
-    ".full-paragraph",
-    paragraphData,
-    visibleParagraphs,
-    setVisibleParagraphs
-  )
+  useVisibleParagraphs(".full-paragraph", paragraphData, setVisibleParagraphs)
 
   const handleChange = (e) => {
     setSearchInput(e.target.value)
@@ -72,7 +67,7 @@ function App() {
           onChange={handleChange}
         />
       </div>
-      <div style={{ paddingTop: "5em" }} id="scolling-box">
+      <div style={{ paddingTop: "5em" }}>
         {paragraphData.paragraphs.length
           ? paragraphData.paragraphs.map((row, i) => (
               <Paragraph
