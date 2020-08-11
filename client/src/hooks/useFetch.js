@@ -9,6 +9,7 @@ const useFetch = (DATA_SIZE, dispatch, counter) => {
       try {
         dispatch({ type: FETCHING_PARAGRAPHS, fetching: true })
         if (isFirstCall) {
+          setIsFirstCall(false)
           const response = await fetch(`/api/dataIdList?datasize=${DATA_SIZE}`)
           const list = await response.json()
           const listOfPromises = list.map((id) =>
@@ -17,17 +18,16 @@ const useFetch = (DATA_SIZE, dispatch, counter) => {
           const paragraphs = await Promise.all(
             listOfPromises.slice(0, counter + 1)
           )
-          setIsFirstCall(false)
           dispatch({ type: STACK_PARAGRAPHS, paragraphs })
           dispatch({ type: FETCHING_PARAGRAPHS, fetching: false })
           setSavedListOfPromises(listOfPromises)
-          console.log("first call")
         } else {
           if (savedListOfPromises.length) {
-            const paragraphs = await Promise.all(savedListOfPromises[counter])
+            const paragraphs = [
+              await Promise.resolve(savedListOfPromises[counter]),
+            ]
             dispatch({ type: STACK_PARAGRAPHS, paragraphs })
             dispatch({ type: FETCHING_PARAGRAPHS, fetching: false })
-            console.log("after call", counter)
           }
         }
       } catch (err) {

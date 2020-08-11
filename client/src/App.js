@@ -32,6 +32,7 @@ function App() {
   const [value, setValue] = useState(0)
   const [searchInput, setSearchInput] = useState("")
   const [paragraphCounter, setParagraphCounter] = useState(1)
+  const [visibleParagraphs, setVisibleParagraphs] = useState([])
   const bottomBoundaryRef = useRef(null)
 
   /** DO NOT CHANGE THE FUNCTION BELOW */
@@ -52,8 +53,10 @@ function App() {
 
   return (
     <div className="App">
-      <h2>JT Online Book</h2>
-      <div>
+      <div
+        style={{ width: "100%", position: "fixed", backgroundColor: "#FFF" }}
+      >
+        <h2>JT Online Book</h2>
         <input
           type="text"
           placeholder="Search text"
@@ -61,35 +64,37 @@ function App() {
           onChange={handleChange}
         />
       </div>
-      {paragraphData.paragraphs.length
-        ? paragraphData.paragraphs.map((row, i) => {
-            return (
-              <p key={`p${i}`}>
-                {row.length
-                  ? row.map((textitem, j) => {
-                      if (
-                        searchInput.length > 0 &&
-                        textitem.text.search(searchInput) === -1
-                      ) {
-                        return null
-                      }
+      <div style={{ paddingTop: "5em" }}>
+        {paragraphData.paragraphs.length
+          ? paragraphData.paragraphs.map((row, i) => {
+              return (
+                <p key={`p${i}`}>
+                  {row.length
+                    ? row.map((textitem, j) => {
+                        if (
+                          searchInput.length > 0 &&
+                          textitem.text.search(searchInput) === -1
+                        ) {
+                          return null
+                        }
 
-                      return (
-                        <>
-                          <TextItem
-                            key={`${i}${j}`}
-                            value={value}
-                            data={textitem}
-                          />
-                        </>
-                      )
-                    })
-                  : null}
-              </p>
-            )
-          })
-        : null}
-      <div ref={bottomBoundaryRef} />
+                        return (
+                          <>
+                            <TextItem
+                              key={`${i}${j}`}
+                              value={value}
+                              data={textitem}
+                            />
+                          </>
+                        )
+                      })
+                    : null}
+                </p>
+              )
+            })
+          : null}
+        <div ref={bottomBoundaryRef} />
+      </div>
     </div>
   )
 }
