@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useReducer } from "react"
+import React, { useEffect, useState, useReducer, useRef } from "react"
 import { STACK_PARAGRAPHS, FETCHING_PARAGRAPHS } from "./reducerTypes"
-import useFetch from "./useFetch"
+import useFetch from "./hooks/useFetch"
+import useLazyLoad from "./hooks/useLazyLoad"
 import TextItem from "./TextItem"
 import "./App.css"
 
@@ -28,10 +29,10 @@ function App() {
     paragraphs: [],
     fetching: true,
   })
-
-  // const [data, setData] = useState([])
   const [value, setValue] = useState(0)
   const [searchInput, setSearchInput] = useState("")
+  const [paragraphCounter, setParagraphCounter] = useState(1)
+  const bottomBoundaryRef = useRef(null)
 
   /** DO NOT CHANGE THE FUNCTION BELOW */
   useEffect(() => {
@@ -42,23 +43,8 @@ function App() {
   }, [])
   /** DO NOT CHANGE THE FUNCTION ABOVE */
 
-  useFetch(DATA_SIZE_FULL, paragraphDispatch)
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     let response = await fetch("/api/dataIdList?datasize=" + DATA_SIZE_FULL)
-  //     let list = await response.json()
-
-  //     let dataItems = await Promise.all(
-  //       list.map(async (id) => {
-  //         return (await fetch("/api/dataItem/" + id)).json()
-  //       })
-  //     )
-  //     setData(dataItems)
-  //   }
-
-  //   fetchData()
-  // }, [])
+  useFetch(DATA_SIZE_FULL, paragraphDispatch, paragraphCounter)
+  useLazyLoad(bottomBoundaryRef, setParagraphCounter)
 
   const handleChange = (e) => {
     setSearchInput(e.target.value)
@@ -79,28 +65,31 @@ function App() {
         ? paragraphData.paragraphs.map((row, i) => {
             return (
               <p key={`p${i}`}>
-                {row.map((textitem, j) => {
-                  if (
-                    searchInput.length > 0 &&
-                    textitem.text.search(searchInput) === -1
-                  ) {
-                    return null
-                  }
+                {row.length
+                  ? row.map((textitem, j) => {
+                      if (
+                        searchInput.length > 0 &&
+                        textitem.text.search(searchInput) === -1
+                      ) {
+                        return null
+                      }
 
-                  return (
-                    <>
-                      <TextItem
-                        key={`${i}${j}`}
-                        value={value}
-                        data={textitem}
-                      />
-                    </>
-                  )
-                })}
+                      return (
+                        <>
+                          <TextItem
+                            key={`${i}${j}`}
+                            value={value}
+                            data={textitem}
+                          />
+                        </>
+                      )
+                    })
+                  : null}
               </p>
             )
           })
         : null}
+      <div ref={bottomBoundaryRef} />
     </div>
   )
 }
