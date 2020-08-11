@@ -15,21 +15,20 @@ const useFetch = (DATA_SIZE, dispatch, counter) => {
           const listOfPromises = list.map((id) =>
             fetch(`/api/dataItem/${id}`).then((data) => data.json())
           )
+          setSavedListOfPromises(listOfPromises)
           const paragraphs = await Promise.all(
             listOfPromises.slice(0, counter + 1)
           )
           dispatch({ type: STACK_PARAGRAPHS, paragraphs })
-          dispatch({ type: FETCHING_PARAGRAPHS, fetching: false })
-          setSavedListOfPromises(listOfPromises)
         } else {
           if (savedListOfPromises.length) {
             const paragraphs = [
               await Promise.resolve(savedListOfPromises[counter]),
             ]
             dispatch({ type: STACK_PARAGRAPHS, paragraphs })
-            dispatch({ type: FETCHING_PARAGRAPHS, fetching: false })
           }
         }
+        dispatch({ type: FETCHING_PARAGRAPHS, fetching: false })
       } catch (err) {
         dispatch({ type: FETCHING_PARAGRAPHS, fetching: false })
         return err
