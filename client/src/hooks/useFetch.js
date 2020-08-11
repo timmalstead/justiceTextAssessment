@@ -19,6 +19,7 @@ const useFetch = (DATA_SIZE, dispatch, counter) => {
           const paragraphs = await Promise.all(
             listOfPromises.slice(0, counter + 1)
           )
+          // console.log(alt, paragraphs)
           dispatch({ type: STACK_PARAGRAPHS, paragraphs })
         } else {
           if (savedListOfPromises.length) {
