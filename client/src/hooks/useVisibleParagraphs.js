@@ -12,7 +12,7 @@ const useVisibleParagraphs = (
       const intObs = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           const paragraphId = entry.target.id
-          if (entry.intersectionRatio >= 0.1)
+          if (entry.intersectionRatio > 0)
             setVisibleParagraphs((prevState) => [
               ...new Set([...prevState, paragraphId]),
             ])

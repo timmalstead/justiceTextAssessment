@@ -43,7 +43,7 @@ function App() {
       // Find random bucket of words to highlight
       setValue(Math.floor(Math.random() * 10))
     }, INTERVAL_TIME)
-  }, [])
+  }, [searchInput])
   /** DO NOT CHANGE THE FUNCTION ABOVE */
 
   useFetch(DATA_SIZE_FULL, paragraphDispatch, paragraphCounter)
