@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useReducer, useRef } from "react"
 import { useFetch, useLazyLoad, useVisibleParagraphs } from "./hooks"
 import { fetchReducer } from "./reducerAndTypes"
+import { AppContainer, Loader } from "./globalStyle"
+import Search from "./components/Search"
 import Paragraph from "./components/Paragraph"
-import "./App.css"
 
 const INTERVAL_TIME = 2000
 
@@ -30,53 +31,9 @@ const App = () => {
   useLazyLoad(bottomBoundaryRef, setParagraphCounter)
   useVisibleParagraphs(".full-paragraph", paragraphData, setVisibleParagraphs)
 
-  const handleChange = (e) => {
-    setSearchInput(e.target.value)
-  }
-
   return (
-    <div className="App">
-      <div
-        style={{
-          height: "6em",
-          position: "fixed",
-          left: 0,
-          top: 0,
-          backgroundColor: "#FFF",
-        }}
-      >
-        <h2>JT Online Book</h2>
-        <input
-          type="text"
-          placeholder="Search text"
-          value={searchInput}
-          onChange={handleChange}
-        />
-        <button
-          type="button"
-          onClick={() =>
-            window.scrollBy({
-              left: 0,
-              top: -400,
-              behavior: "smooth",
-            })
-          }
-        >
-          Up
-        </button>
-        <button
-          type="button"
-          onClick={(e) =>
-            window.scrollBy({
-              left: 0,
-              top: 400,
-              behavior: "smooth",
-            })
-          }
-        >
-          Down
-        </button>
-      </div>
+    <AppContainer>
+      <Search searchInput={searchInput} setSearchInput={setSearchInput} />
       <div>
         {paragraphData.paragraphs.length
           ? paragraphData.paragraphs.map((row, i) => (
@@ -90,12 +47,9 @@ const App = () => {
               />
             ))
           : null}
-        <div
-          ref={bottomBoundaryRef}
-          style={{ height: "1000px", visibility: "hidden" }}
-        />
+        <Loader ref={bottomBoundaryRef} />
       </div>
-    </div>
+    </AppContainer>
   )
 }
 

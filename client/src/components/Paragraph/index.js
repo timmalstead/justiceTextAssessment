@@ -1,5 +1,6 @@
 import React, { useRef } from "react"
 import TextItem from "../TextItem"
+import Article from "./style"
 import { v4 } from "uuid"
 
 const Paragraph = ({ i, row, value, searchInput, visibleParagraphs }) => {
@@ -8,7 +9,7 @@ const Paragraph = ({ i, row, value, searchInput, visibleParagraphs }) => {
   const visible = visibleParagraphs.includes(idRef) ? true : false
 
   return (
-    <p className={"full-paragraph"} id={idRef} style={{ height: "22em" }}>
+    <Article className={"full-paragraph"} id={idRef}>
       {row.length
         ? row.map((textitem, j) => {
             if (
@@ -28,7 +29,7 @@ const Paragraph = ({ i, row, value, searchInput, visibleParagraphs }) => {
             )
           })
         : null}
-    </p>
+    </Article>
   )
 }
 
