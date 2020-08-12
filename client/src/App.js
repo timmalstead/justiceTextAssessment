@@ -4,7 +4,6 @@ import useFetch from "./hooks/useFetch"
 import useLazyLoad from "./hooks/useLazyLoad"
 import useVisibleParagraphs from "./hooks/useVisibleParagraphs"
 import Paragraph from "./components/Paragraph"
-// import TextItem from "./components/TextItem"
 import "./App.css"
 
 // const DATA_SIZE_HALF = "half"
@@ -37,23 +36,12 @@ function App() {
   const [visibleParagraphs, setVisibleParagraphs] = useState([])
   const bottomBoundaryRef = useRef(null)
 
-  // /** DO NOT CHANGE THE FUNCTION BELOW */
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     // Find random bucket of words to highlight
-  //     setValue(Math.floor(Math.random() * 10))
-  //   }, INTERVAL_TIME)
-  // }, [])
-  // /** DO NOT CHANGE THE FUNCTION ABOVE */
-
   /** DO NOT CHANGE THE FUNCTION BELOW */
   useEffect(() => {
-    const interval = setInterval(() => {
+    setInterval(() => {
       // Find random bucket of words to highlight
       setValue(Math.floor(Math.random() * 10))
     }, INTERVAL_TIME)
-
-    return () => clearInterval(interval)
   }, [])
   /** DO NOT CHANGE THE FUNCTION ABOVE */
 
