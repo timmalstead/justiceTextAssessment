@@ -22,9 +22,9 @@ const useFetch = (dispatch, counter) => {
           dispatch({ type: STACK_PARAGRAPHS, paragraphs })
         } else {
           if (savedListOfPromises.length) {
-            const paragraphs = [
-              await Promise.resolve(savedListOfPromises[counter]),
-            ]
+            const paragraphs = await Promise.all(
+              savedListOfPromises.slice(counter - 1, counter + 1)
+            )
             dispatch({ type: STACK_PARAGRAPHS, paragraphs })
           }
         }

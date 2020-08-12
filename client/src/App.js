@@ -57,7 +57,7 @@ const App = () => {
           onClick={() =>
             window.scrollBy({
               left: 0,
-              top: -window.innerHeight / 2,
+              top: -400,
               behavior: "smooth",
             })
           }
@@ -66,10 +66,10 @@ const App = () => {
         </button>
         <button
           type="button"
-          onClick={() =>
+          onClick={(e) =>
             window.scrollBy({
               left: 0,
-              top: window.innerHeight / 2,
+              top: 400,
               behavior: "smooth",
             })
           }
@@ -90,7 +90,10 @@ const App = () => {
               />
             ))
           : null}
-        <div ref={bottomBoundaryRef} />
+        <div
+          ref={bottomBoundaryRef}
+          style={{ height: "1000px", visibility: "hidden" }}
+        />
       </div>
     </div>
   )
