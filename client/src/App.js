@@ -37,13 +37,24 @@ function App() {
   const [visibleParagraphs, setVisibleParagraphs] = useState([])
   const bottomBoundaryRef = useRef(null)
 
+  // /** DO NOT CHANGE THE FUNCTION BELOW */
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     // Find random bucket of words to highlight
+  //     setValue(Math.floor(Math.random() * 10))
+  //   }, INTERVAL_TIME)
+  // }, [])
+  // /** DO NOT CHANGE THE FUNCTION ABOVE */
+
   /** DO NOT CHANGE THE FUNCTION BELOW */
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       // Find random bucket of words to highlight
       setValue(Math.floor(Math.random() * 10))
     }, INTERVAL_TIME)
-  }, [searchInput])
+
+    return () => clearInterval(interval)
+  }, [])
   /** DO NOT CHANGE THE FUNCTION ABOVE */
 
   useFetch(DATA_SIZE_FULL, paragraphDispatch, paragraphCounter)
@@ -57,7 +68,13 @@ function App() {
   return (
     <div className="App">
       <div
-        style={{ width: "100%", position: "fixed", backgroundColor: "#FFF" }}
+        style={{
+          height: "6em",
+          position: "fixed",
+          left: 0,
+          top: 0,
+          backgroundColor: "#FFF",
+        }}
       >
         <h2>JT Online Book</h2>
         <input
@@ -67,7 +84,7 @@ function App() {
           onChange={handleChange}
         />
       </div>
-      <div style={{ paddingTop: "5em" }}>
+      <div>
         {paragraphData.paragraphs.length
           ? paragraphData.paragraphs.map((row, i) => (
               <Paragraph
