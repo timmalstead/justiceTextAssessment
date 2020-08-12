@@ -5,20 +5,12 @@ const port = process.env.PORT || 8080
 
 const data = require("./data.json")
 
-const DATA_SIZE_HALF = "half"
-const DATA_SIZE_FULL = "full"
-
 app.get("/api/dataIdList", (req, res) => {
   if (!req.query.datasize) {
     res.status(400).send("Bad Request - missing query")
     return
   }
-
-  if (req.query.datasize === DATA_SIZE_HALF) {
-    res.send(data.rowIdHalfList)
-  } else {
-    res.send(data.rowIdFullList)
-  }
+  res.send(data.rowIdFullList)
 })
 
 app.get("/api/dataItem/:id", (req, res) => {

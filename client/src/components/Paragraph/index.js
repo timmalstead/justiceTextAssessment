@@ -7,12 +7,8 @@ const Paragraph = ({ i, row, value, searchInput, visibleParagraphs }) => {
 
   const visible = visibleParagraphs.includes(idRef) ? true : false
 
-  const paragraphStyle = {
-    visibility: searchInput.length > 0 && !visible ? "hidden" : "visible",
-  }
-
   return (
-    <p className={"full-paragraph"} id={idRef} style={paragraphStyle}>
+    <p className={"full-paragraph"} id={idRef} style={{ height: "22em" }}>
       {row.length
         ? row.map((textitem, j) => {
             if (

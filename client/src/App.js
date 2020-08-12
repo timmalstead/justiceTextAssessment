@@ -1,31 +1,12 @@
 import React, { useEffect, useState, useReducer, useRef } from "react"
-import { STACK_PARAGRAPHS, FETCHING_PARAGRAPHS } from "./reducerTypes"
-import useFetch from "./hooks/useFetch"
-import useLazyLoad from "./hooks/useLazyLoad"
-import useVisibleParagraphs from "./hooks/useVisibleParagraphs"
+import { useFetch, useLazyLoad, useVisibleParagraphs } from "./hooks"
+import { fetchReducer } from "./reducerAndTypes"
 import Paragraph from "./components/Paragraph"
 import "./App.css"
 
-// const DATA_SIZE_HALF = "half"
-const DATA_SIZE_FULL = "full"
 const INTERVAL_TIME = 2000
 
-const fetchReducer = (state, action) => {
-  switch (action.type) {
-    case STACK_PARAGRAPHS:
-      return {
-        ...state,
-        paragraphs: state.paragraphs.concat(action.paragraphs),
-      }
-    case FETCHING_PARAGRAPHS:
-      return { ...state, fetching: action.fetching }
-    default:
-      return state
-  }
-}
-
-/** Application entry point */
-function App() {
+const App = () => {
   const [paragraphData, paragraphDispatch] = useReducer(fetchReducer, {
     paragraphs: [],
     fetching: true,
@@ -45,7 +26,7 @@ function App() {
   }, [])
   /** DO NOT CHANGE THE FUNCTION ABOVE */
 
-  useFetch(DATA_SIZE_FULL, paragraphDispatch, paragraphCounter)
+  useFetch(paragraphDispatch, paragraphCounter)
   useLazyLoad(bottomBoundaryRef, setParagraphCounter)
   useVisibleParagraphs(".full-paragraph", paragraphData, setVisibleParagraphs)
 
@@ -71,6 +52,30 @@ function App() {
           value={searchInput}
           onChange={handleChange}
         />
+        <button
+          type="button"
+          onClick={() =>
+            window.scrollBy({
+              left: 0,
+              top: -window.innerHeight / 2,
+              behavior: "smooth",
+            })
+          }
+        >
+          Up
+        </button>
+        <button
+          type="button"
+          onClick={() =>
+            window.scrollBy({
+              left: 0,
+              top: window.innerHeight / 2,
+              behavior: "smooth",
+            })
+          }
+        >
+          Down
+        </button>
       </div>
       <div>
         {paragraphData.paragraphs.length

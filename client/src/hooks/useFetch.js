@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import { STACK_PARAGRAPHS, FETCHING_PARAGRAPHS } from "../reducerTypes"
+import { STACK_PARAGRAPHS, FETCHING_PARAGRAPHS } from "../reducerAndTypes"
 
-const useFetch = (DATA_SIZE, dispatch, counter) => {
+const useFetch = (dispatch, counter) => {
   const [isFirstCall, setIsFirstCall] = useState(true)
   const [savedListOfPromises, setSavedListOfPromises] = useState([])
   useEffect(() => {
@@ -10,7 +10,7 @@ const useFetch = (DATA_SIZE, dispatch, counter) => {
         dispatch({ type: FETCHING_PARAGRAPHS, fetching: true })
         if (isFirstCall) {
           setIsFirstCall(false)
-          const response = await fetch(`/api/dataIdList?datasize=${DATA_SIZE}`)
+          const response = await fetch(`/api/dataIdList?datasize=full`)
           const list = await response.json()
           const listOfPromises = list.map((id) =>
             fetch(`/api/dataItem/${id}`).then((data) => data.json())
@@ -37,7 +37,6 @@ const useFetch = (DATA_SIZE, dispatch, counter) => {
 
     fetchData()
   }, [
-    DATA_SIZE,
     dispatch,
     counter,
     isFirstCall,

@@ -1,22 +1,17 @@
 import React from "react"
 import "./TextItem.css"
 
-/** Component for each word controlling highlight state. */
-function TextItem(props) {
-  const getHighlight = () => {
-    if (Math.floor(props.data.info.start / 2000) % props.value === 0) {
-      return "highlight"
-    }
-    return ""
-  }
+const TextItem = ({ data, value, visible }) => {
+  const getHighlight = () =>
+    Math.floor(data.info.start / 2000) % value === 0 ? "highlight" : null
 
   return (
     <span
-      className={props.visible ? getHighlight() : null}
+      className={visible ? getHighlight() : null}
       contentEditable={true}
       suppressContentEditableWarning={true}
     >
-      {props.data.text}{" "}
+      {`${data.text} `}
     </span>
   )
 }
