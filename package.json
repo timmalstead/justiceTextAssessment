@@ -6,9 +6,10 @@
   "scripts": {
     "dev_client": "cd client && yarn start",
     "server": "nodemon index.js",
+    "dev_start": "concurrently --kill-others-on-fail 'yarn server' 'yarn dev_client'",
     "serve_production_build": "cd client && yarn serve",
     "build_and_start": "cd client && [ -d './build' ]; yes | rm -r build/; yarn build && cd .. && yarn start",
-    "start": "concurrently --kill-others-on-fail 'yarn server' 'yarn serve_production_build'"
+    "prod_start": "concurrently --kill-others-on-fail 'yarn server' 'yarn serve_production_build'"
   },
   "repository": {
     "type": "git",
