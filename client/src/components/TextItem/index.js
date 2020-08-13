@@ -4,8 +4,8 @@ import Text from "./style"
 const TextItem = ({ data, value, visible }) => (
   <Text
     highlight={visible ? ((data.info.start / 2000) | 0) % value === 0 : null}
-    contentEditable={true}
-    suppressContentEditableWarning={true}
+    contentEditable
+    suppressContentEditableWarning
   >
     {`${data.text} `}
   </Text>

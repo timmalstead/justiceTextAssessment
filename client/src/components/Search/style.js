@@ -18,6 +18,8 @@ export const SearchHolder = styled.div`
   }
 `
 
+SearchHolder.displayName = "SearchHolder"
+
 export const Input = styled.input`
   width: 10em;
   border-radius: 0.5em;
@@ -35,3 +37,5 @@ export const Input = styled.input`
     color: #6320ee;
   }
 `
+
+Input.displayName = "Input"

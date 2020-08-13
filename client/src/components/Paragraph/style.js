@@ -10,4 +10,6 @@ const Article = styled.p`
   font-weight: 300;
 `
 
+Article.displayName = "Article"
+
 export default Article

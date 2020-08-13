@@ -19,7 +19,10 @@ export const AppContainer = styled.div`
   text-align: center;
 `
 
+AppContainer.displayName = "AppContainer"
+
 export const Loader = styled.div`
   height: 1000px;
   visibility: hidden;
 `
+Loader.displayName = "Loader"
