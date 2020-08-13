@@ -10,7 +10,8 @@ const GlobalStyle = createGlobalStyle`
         width: 1400px;
         height:100%;
         margin: auto;
-        font-family: Arial,Helvetica,sans-serif;
+        font-family: "Lato", Arial, Helvetica, sans-serif;
+        background-color: #EEEEEE66;
     }
 `
 export default GlobalStyle

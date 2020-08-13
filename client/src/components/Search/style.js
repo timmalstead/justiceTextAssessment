@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const SearchHolder = styled.div`
   background-color: #6320ee;
-  width: 12em;
+  width: 10.5em;
   padding: 0.5em 1em;
   position: fixed;
   left: 0;
@@ -12,7 +12,6 @@ export const SearchHolder = styled.div`
   align-items: flex-start;
   border-radius: 0 0 3em 0;
   color: white;
-
   > * {
     margin: 0 0 0.5em 0;
   }
