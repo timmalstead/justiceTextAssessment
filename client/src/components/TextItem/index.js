@@ -7,6 +7,7 @@ const TextItem = ({ data, value, visible }) => {
 
   return (
     <span
+      style={{ display: visible ? "initial" : "none" }}
       className={visible ? getHighlight() : null}
       contentEditable={true}
       suppressContentEditableWarning={true}

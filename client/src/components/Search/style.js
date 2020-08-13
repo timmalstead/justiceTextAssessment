@@ -1,5 +1,4 @@
 import styled from "styled-components"
-
 import { main, contrast } from "../../colors"
 
 export const SearchHolder = styled.div`

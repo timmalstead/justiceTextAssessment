@@ -9,7 +9,7 @@ const Paragraph = ({ i, row, value, searchInput, visibleParagraphs }) => {
   const visible = visibleParagraphs.includes(idRef) ? true : false
 
   return (
-    <Article className={"full-paragraph"} id={idRef}>
+    <Article className={"full-paragraph"} id={idRef} visible={visible} i={i}>
       {row.length
         ? row.map((textitem, j) => {
             if (

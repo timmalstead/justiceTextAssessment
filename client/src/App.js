@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useReducer, useRef } from "react"
 import { useFetch, useLazyLoad, useVisibleParagraphs } from "./hooks"
 import { fetchReducer } from "./reducerAndTypes"
-import { AppContainer, Loader } from "./globalStyle"
+import { AppContainer } from "./globalStyle"
 import Search from "./components/Search"
 import Paragraph from "./components/Paragraph"
 
@@ -47,8 +47,8 @@ const App = () => {
               />
             ))
           : null}
-        <Loader ref={bottomBoundaryRef} />
       </div>
+      <div ref={bottomBoundaryRef} />
     </AppContainer>
   )
 }
