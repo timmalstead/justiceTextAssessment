@@ -4,7 +4,6 @@
   "description": "Technical assessment for engineers interested in creating a more equitable U.S. justice system.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "client": "cd client && yarn start",
     "server": "nodemon index.js",
     "serve_production_build": "cd client && yarn serve",
