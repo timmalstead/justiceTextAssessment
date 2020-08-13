@@ -1,19 +1,19 @@
 import React from "react"
-import "./TextItem.css"
+import Text from "./style"
+// import "./TextItem.css"
 
 const TextItem = ({ data, value, visible }) => {
-  const getHighlight = () =>
-    Math.floor(data.info.start / 2000) % value === 0 ? "highlight" : null
+  const highlight = Math.floor(data.info.start / 2000) % value === 0
 
   return (
-    <span
-      style={{ display: visible ? "initial" : "none" }}
-      className={visible ? getHighlight() : null}
+    <Text
+      visible={visible}
+      highlight={highlight}
       contentEditable={true}
       suppressContentEditableWarning={true}
     >
       {`${data.text} `}
-    </span>
+    </Text>
   )
 }
 

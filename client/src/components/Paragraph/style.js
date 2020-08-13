@@ -14,6 +14,7 @@ const Article = styled.p`
   font-weight: 300;
   line-height: 1.2;
   visibility: ${({ visible }) => (visible ? "initial" : "hidden")};
+  transition: visibility 0.25s linear;
 `
 
 export default Article

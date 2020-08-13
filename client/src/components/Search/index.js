@@ -22,12 +22,12 @@ const Search = ({ searchInput, setSearchInput }) => {
         value={searchInput}
         onChange={handleChange}
       />
-      <Button type="button" onClick={handleScroll}>
+      {/* <Button type="button" onClick={handleScroll}>
         UP
       </Button>
       <Button type="button" onClick={handleScroll}>
         DOWN
-      </Button>
+      </Button> */}
     </SearchHolder>
   )
 }

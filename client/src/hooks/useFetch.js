@@ -10,10 +10,12 @@ const useFetch = (dispatch, counter) => {
         dispatch({ type: FETCHING_PARAGRAPHS, fetching: true })
         if (isFirstCall) {
           setIsFirstCall(false)
-          const response = await fetch(`/api/dataIdList?datasize=full`)
+          const response = await fetch(`http://localhost:8080/api/dataIdList`)
           const list = await response.json()
           const listOfPromises = list.map((id) =>
-            fetch(`/api/dataItem/${id}`).then((data) => data.json())
+            fetch(`http://localhost:8080/api/dataItem/${id}`).then((data) =>
+              data.json()
+            )
           )
           setSavedListOfPromises(listOfPromises)
           const paragraphs = await Promise.all(

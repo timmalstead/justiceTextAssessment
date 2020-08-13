@@ -1,17 +1,18 @@
 const express = require("express")
-
+const cors = require("cors")
 const app = express()
+
 const port = process.env.PORT || 8080
+
+const corsOptions = {
+  origin: ["http://localhost:3000", "http://localhost:5000"],
+}
+
+app.use(cors(corsOptions))
 
 const data = require("./data.json")
 
-app.get("/api/dataIdList", (req, res) => {
-  if (!req.query.datasize) {
-    res.status(400).send("Bad Request - missing query")
-    return
-  }
-  res.send(data.rowIdFullList)
-})
+app.get("/api/dataIdList", ({ res }) => res.send(data.rowIdFullList))
 
 app.get("/api/dataItem/:id", (req, res) => {
   if (!req.params.id) {
