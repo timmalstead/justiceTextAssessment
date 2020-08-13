@@ -1,6 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components"
 
-// GlobalStyle Styled Component to enforce CSS rules app wide
+// GlobalStyle Styled Component to enforce CSS rules app wid
+// I chose to make this a fixed width app to keep it very clean and basic, with the focus on the content and a UI that would get out of the user's way and allow them to do the editing they need to do.
 const GlobalStyle = createGlobalStyle`
     * {
         margin: 0;
@@ -23,7 +24,7 @@ export const AppContainer = styled.div`
 
 AppContainer.displayName = "AppContainer"
 
-// When viewport intersects with below component, a new call to the backend is made. This allows the user uninterrupted scrolling, without the need to call all the data in the api upon first loading the app.
+// When viewport intersects with below component, a new call to the backend is made. Because we have made this 1000px high, this will occur well before the user reaches the end of the page. This allows the user uninterrupted scrolling, without the need to call all the data in the api upon first loading the app.
 
 export const Loader = styled.div`
   height: 1000px;

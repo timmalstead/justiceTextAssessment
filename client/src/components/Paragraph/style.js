@@ -1,5 +1,6 @@
 import styled from "styled-components"
 
+//CSS styling for fetched paragraph elements. To lessen amount of calculations needed, I supplied a fixed height in pixels. Styling info also includes infor for :hover, :focus and :focus-within states
 const Article = styled.p`
   width: 65%;
   margin: 0.5em auto;

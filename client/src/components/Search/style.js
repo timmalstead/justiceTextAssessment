@@ -1,5 +1,6 @@
 import styled from "styled-components"
 
+//holder for search bar and title, "pinned" to upper left of viewport
 export const SearchHolder = styled.div`
   background-color: #6320ee;
   width: 10.5em;
@@ -19,6 +20,7 @@ export const SearchHolder = styled.div`
 
 SearchHolder.displayName = "SearchHolder"
 
+//style for input component, including styling for :focus state and ::placeholder pseudo element
 export const Input = styled.input`
   width: 10em;
   border-radius: 0.5em;
