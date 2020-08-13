@@ -5,7 +5,7 @@ const useLazyLoad = (scrollRef, setCounter) => {
     (node) =>
       new IntersectionObserver((entries) =>
         entries.forEach((element) => {
-          if (element.intersectionRatio > 0) {
+          if (element.isIntersecting) {
             setCounter((prevNum) => (prevNum += 2))
           }
         })

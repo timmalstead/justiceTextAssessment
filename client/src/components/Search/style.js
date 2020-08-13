@@ -1,8 +1,7 @@
 import styled from "styled-components"
-import { main } from "../../colors"
 
 export const SearchHolder = styled.div`
-  background-color: ${main};
+  background-color: #6320ee;
   width: 12em;
   padding: 0.5em 1em;
   position: fixed;
@@ -26,13 +25,13 @@ export const Input = styled.input`
   outline: none;
   border: none;
   transition: transform 0.25s linear;
-  color: ${main};
+  color: #6320ee;
 
   :focus {
     transform: scale(1.1);
   }
 
   ::placeholder {
-    color: ${main};
+    color: #6320ee;
   }
 `

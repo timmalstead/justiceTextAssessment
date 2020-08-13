@@ -1,18 +1,14 @@
-import React from "react"
+import React, { memo } from "react"
 import Text from "./style"
 
-const TextItem = ({ data, value }) => {
-  const highlight = Math.floor(data.info.start / 2000) % value === 0
+const TextItem = ({ data, value, visible }) => (
+  <Text
+    highlight={visible ? ((data.info.start / 2000) | 0) % value === 0 : null}
+    contentEditable={true}
+    suppressContentEditableWarning={true}
+  >
+    {`${data.text} `}
+  </Text>
+)
 
-  return (
-    <Text
-      highlight={highlight}
-      contentEditable={true}
-      suppressContentEditableWarning={true}
-    >
-      {`${data.text} `}
-    </Text>
-  )
-}
-
-export default TextItem
+export default memo(TextItem)

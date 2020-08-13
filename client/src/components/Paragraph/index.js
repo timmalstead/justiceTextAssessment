@@ -19,7 +19,14 @@ const Paragraph = ({ i, row, value, searchInput, visibleParagraphs }) => {
               return null
             }
 
-            return <TextItem key={`${i}${j}`} value={value} data={textitem} />
+            return (
+              <TextItem
+                key={`${i}${j}`}
+                value={value}
+                data={textitem}
+                visible={visible}
+              />
+            )
           })
         : null}
     </Article>

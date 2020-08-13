@@ -1,8 +1,7 @@
 import styled from "styled-components"
-import { contrast } from "../../colors"
 
 const Text = styled.span`
-  background-color: ${({ highlight }) => (highlight ? contrast : null)};
+  background-color: ${({ highlight }) => (highlight ? "#fdbcd4" : null)};
 `
 
 export default Text

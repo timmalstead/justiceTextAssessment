@@ -19,7 +19,7 @@ app.get("/api/dataItem/:id", (req, res) => {
     res.status(400).send("Bad Request - missing id")
     return
   }
-  res.send(data.rows["row" + req.params.id])
+  res.send(data.rows[`row${req.params.id}`])
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`))
