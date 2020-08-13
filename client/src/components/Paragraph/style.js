@@ -1,20 +1,14 @@
 import styled from "styled-components"
-import { main } from "../../colors"
 
 const Article = styled.p`
-  box-sizing: border-box;
-  border: 1px solid ${main};
-  width: 72%;
-  margin: 5px auto 5px auto;
+  width: 65%;
+  margin: 0.75em auto 0 auto;
   overflow-wrap: break-word;
-  padding: 24px 12px;
-  height: 390px;
+  height: 350px;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 15px;
   font-weight: 300;
-  line-height: 1.2;
-  visibility: ${({ visible }) => (visible ? "initial" : "hidden")};
-  transition: visibility 0.25s linear;
+  visibility: ${({ visible }) => (visible ? "auto" : "hidden")};
 `
 
 export default Article

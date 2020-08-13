@@ -9,7 +9,7 @@
     "server": "nodemon index.js",
     "serve_production_build": "cd client && yarn serve",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "run_final": "concurrently --kill-others-on-fail \"yarn server\" \"yarn serve_production_build\""
+    "final": "concurrently --kill-others-on-fail \"yarn server\" \"yarn serve_production_build\""
   },
   "repository": {
     "type": "git",

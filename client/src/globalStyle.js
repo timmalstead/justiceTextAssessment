@@ -18,3 +18,8 @@ export default GlobalStyle
 export const AppContainer = styled.div`
   text-align: center;
 `
+
+export const Loader = styled.div`
+  height: 1000px;
+  visibility: hidden;
+`

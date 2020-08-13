@@ -1,17 +1,8 @@
 import React from "react"
-import { SearchHolder, Input, Button } from "./style"
+import { SearchHolder, Input } from "./style"
 
 const Search = ({ searchInput, setSearchInput }) => {
   const handleChange = ({ target }) => setSearchInput(target.value)
-
-  const handleScroll = ({ target }) => {
-    const top = target.innerText === "UP" ? -400 : 400
-
-    window.scrollBy({
-      top,
-      behavior: "smooth",
-    })
-  }
 
   return (
     <SearchHolder>
@@ -22,12 +13,6 @@ const Search = ({ searchInput, setSearchInput }) => {
         value={searchInput}
         onChange={handleChange}
       />
-      {/* <Button type="button" onClick={handleScroll}>
-        UP
-      </Button>
-      <Button type="button" onClick={handleScroll}>
-        DOWN
-      </Button> */}
     </SearchHolder>
   )
 }
