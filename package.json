@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "dev_client": "cd client && yarn start",
-    "dev": "concurrently --kill-others-on-fail 'yarn server' 'yarn dev_client'",
     "server": "nodemon index.js",
     "serve_production_build": "cd client && yarn serve",
     "build_and_start": "cd client && [ -d './build' ]; yes | rm -r build/; yarn build && cd .. && yarn start",

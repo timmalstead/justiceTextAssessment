@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components"
 
+// GlobalStyle Styled Component to enforce CSS rules app wide
 const GlobalStyle = createGlobalStyle`
     * {
         margin: 0;
@@ -21,6 +22,8 @@ export const AppContainer = styled.div`
 `
 
 AppContainer.displayName = "AppContainer"
+
+// When viewport intersects with below component, a new call to the backend is made. This allows the user uninterrupted scrolling, without the need to call all the data in the api upon first loading the app.
 
 export const Loader = styled.div`
   height: 1000px;

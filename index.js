@@ -4,7 +4,7 @@ const app = express()
 
 const port = process.env.PORT || 8080
 
-// Allows acceptance of requests from dev and locally served production environments
+// Allows acceptance of cross origin site requests from both dev and locally served production environments
 const corsOptions = {
   origin: ["http://localhost:3000", "http://localhost:5000"],
 }
